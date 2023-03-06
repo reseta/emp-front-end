@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../user-form/user.model';
+import { Store } from '@ngrx/store';
+import { signinAction } from '../store/auth/auth.actions';
+import { Credentials } from '../user-form/credentials.model';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,9 @@ import { User } from '../user-form/user.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  onValidForm(user: User) {
-    console.log({ user });
+  constructor(private store: Store) {}
+
+  onValidForm(credentials: Credentials) {
+    this.store.dispatch(signinAction({ credentials }));
   }
 }

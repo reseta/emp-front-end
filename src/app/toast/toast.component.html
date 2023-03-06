@@ -1,0 +1,9 @@
+<ng-container *ngIf="items$ | async as items">
+  <div
+    *ngFor="let item of items"
+    class="alert alert-{{ item.type }}"
+    role="alert"
+  >
+    {{ item.message }}
+  </div>
+</ng-container>

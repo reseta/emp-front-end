@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { UserService } from './user-form.service';
+import { UserFormService } from './user-form.service';
 import { User } from './user.model';
 
 @Component({
@@ -9,16 +9,20 @@ import { User } from './user.model';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  @Input() confirmPassword: boolean;
+  @Input() addName: boolean;
+  @Input() addConfirmPassword: boolean;
   @Output() onValidForm: EventEmitter<User> = new EventEmitter();
 
   form: FormGroup;
   isSubmitted = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserFormService) {}
 
   ngOnInit(): void {
-    this.form = this.userService.createForm(this.confirmPassword);
+    this.form = this.userService.createForm(
+        this.addName,
+        this.addConfirmPassword,
+    );
   }
 
   onSubmit() {

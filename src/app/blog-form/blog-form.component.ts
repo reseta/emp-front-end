@@ -27,7 +27,6 @@ export class BlogFormComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.isSubmitted = true;
 
     if (this.form.invalid) {
