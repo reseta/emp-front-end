@@ -1,0 +1,5 @@
+:host {
+  .invalid-feedback:not(:first-of-type) {
+    display: none !important;
+  }
+}
