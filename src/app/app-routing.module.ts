@@ -13,6 +13,11 @@ const routes: Routes = [
         import('./login/login.module').then((m) => m.LoginModule),
   },
   {
+    path: 'manage',
+    loadChildren: () =>
+        import('./manage-blog-post/manage-blog-post.module').then((m) => m.ManageBlogPostModule),
+  },
+  {
     path: '**',
     redirectTo: '/',
   },

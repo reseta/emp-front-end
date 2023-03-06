@@ -1,0 +1,63 @@
+<form [formGroup]="form" (submit)="onSubmit()" novalidate>
+  <div class="form-group">
+    <label for="email">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      formControlName="title"
+      [ngClass]="{
+        'is-invalid': isSubmitted && form.controls.title.invalid,
+        'is-valid': isSubmitted && form.controls.title.valid
+      }"
+    />
+    <div class="invalid-feedback" *ngIf="form.controls.title.errors?.required">
+      Required field
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <textarea
+      rows="10"
+      class="form-control"
+      id="content"
+      formControlName="content"
+      [ngClass]="{
+        'is-invalid': isSubmitted && form.controls.content.invalid,
+        'is-valid': isSubmitted && form.controls.content.valid
+      }"
+    ></textarea>
+
+    <div
+      class="invalid-feedback"
+      *ngIf="form.controls.content.errors?.required"
+    >
+      Required field
+    </div>
+  </div>
+
+  <div class="custom-file form-group mb-5">
+    <input
+      type="file"
+      class="form-control custom-file-input"
+      id="customFile"
+      formControlName="image"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      [ngClass]="{
+        'is-invalid': isSubmitted && form.controls.image.invalid,
+        'is-valid': isSubmitted && form.controls.image.valid
+      }"
+    />
+    <label class="custom-file-label" for="customFile">
+      {{ selectedFile?.name || "Select file" }}
+    </label>
+
+    <div class="invalid-feedback" *ngIf="form.controls.image.errors?.required">
+      Required field
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-sm-6 offset-3">
+    <h5>{{ pageTitle }}</h5>
+
+    <app-blog-form
+      (onValidForm)="onValidForm($event)"
+      [isImageRequired]="isImageRequired"
+    ></app-blog-form>
+  </div>
+</div>
