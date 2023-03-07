@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-browse',
@@ -8,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BrowseComponent implements OnInit {
   blogPosts = this.route.snapshot.data.blogPosts;
+  environment = environment;
 
   constructor(private route: ActivatedRoute) {}
 

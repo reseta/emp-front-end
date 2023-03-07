@@ -2,6 +2,7 @@
   <li *ngFor="let blogPost of blogPosts" [routerLink]="['/view', blogPost.id]">
     <h5>{{ blogPost.title }}</h5>
     <p>{{ blogPost.content?.slice(0, 50) + "..." }}</p>
+    <p class=card-img><img src="{{environment.IMG_URL}}{{blogPost.image}}" alt="{{blogPost.image}}" /></p>
   </li>
 </ul>
 
