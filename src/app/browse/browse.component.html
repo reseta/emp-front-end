@@ -1,0 +1,12 @@
+<ul *ngIf="blogPosts?.length; else noResults">
+  <li *ngFor="let blogPost of blogPosts" [routerLink]="['/view', blogPost.id]">
+    <h5>{{ blogPost.title }}</h5>
+    <p>{{ blogPost.content?.slice(0, 50) + "..." }}</p>
+  </li>
+</ul>
+
+<ng-template #noResults>
+  <div class="alert alert-danger" role="alert">
+    No results!
+  </div>
+</ng-template>

@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BlogPost } from '../blog-form/blog.model';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { filter, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogService {
-  private path = '/post';
+  private path = 'post';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class BlogService {
   }
 
   update(id: number, blogPost: FormData) {
-    return this.http.put(`${environment.API_URL}/${this.path}/${id}`, blogPost);
+    return this.http.post(`${environment.API_URL}/${this.path}/${id}`, blogPost);
   }
 
   delete(id: number) {
@@ -25,10 +25,18 @@ export class BlogService {
   }
 
   findOne(id: number): Observable<BlogPost> {
-    return this.http.get<BlogPost>(`${environment.API_URL}/${this.path}/${id}`);
+    return this.http.get<BlogPost[]>(`${environment.API_URL}/posts/${id}`).pipe(
+        map((items) => {
+          if (items.length) {
+            return items[0];
+          }
+
+          throw new Error('not found');
+        }),
+    );
   }
 
-  findAll(): Observable<BlogPost[]> {
-    return this.http.get<BlogPost[]>(`${environment.API_URL}/${this.path}`);
+  findAllOwn(): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${environment.API_URL}/posts`);
   }
 }

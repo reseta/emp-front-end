@@ -16,9 +16,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { UserEffects } from './store/user/user.effects';
 import { ToastComponent } from './toast/toast.component';
 import { ToastEffects } from './store/toast/toast.effects';
+import { BlogPostEffects } from './store/blog-post/blog-post.effects';
+import { ViewComponent } from './view/view.component';
+import { BrowseComponent } from './browse/browse.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, ToastComponent],
+  declarations: [AppComponent, NavComponent, ToastComponent, ViewComponent, BrowseComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
@@ -26,6 +29,7 @@ import { ToastEffects } from './store/toast/toast.effects';
       CommonEffects,
       UserEffects,
       ToastEffects,
+      BlogPostEffects,
     ]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],

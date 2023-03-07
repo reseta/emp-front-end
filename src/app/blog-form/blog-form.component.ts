@@ -10,6 +10,7 @@ import { BlogPost } from './blog.model';
 })
 export class BlogFormComponent implements OnInit {
   @Input() isImageRequired: boolean;
+  @Input() blogPost: BlogPost;
   @Output() onValidForm: EventEmitter<FormData> = new EventEmitter();
 
   form: FormGroup;
@@ -20,6 +21,10 @@ export class BlogFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.blogFormService.createForm(this.isImageRequired);
+
+    if (this.blogPost) {
+      this.form.patchValue(this.blogPost);
+    }
   }
 
   onFileSelected(event: any) {

@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowseComponent } from './browse/browse.component';
 import { AuthGuard } from './guards/auth.guard';
+import { BlogPostResolver } from './resolvers/blog-post.resolver';
+import { OwnBlogPostsResolver } from './resolvers/own-blog-posts.resolver';
+import { UserResolver } from './resolvers/user.resolver';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -24,6 +29,22 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
         import('./manage-blog-post/manage-blog-post.module').then((m) => m.ManageBlogPostModule),
+  },
+  {
+    path: 'view/:id',
+    component: ViewComponent,
+    resolve: {
+      blogPost: BlogPostResolver,
+      user: UserResolver,
+    },
+  },
+  {
+    path: 'browse',
+    component: BrowseComponent,
+    resolve: {
+      blogPosts: OwnBlogPostsResolver,
+      user: UserResolver,
+    },
   },
   {
     path: '**',

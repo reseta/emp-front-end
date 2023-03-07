@@ -3,6 +3,7 @@
     <h5>{{ pageTitle }}</h5>
 
     <app-blog-form
+      [blogPost]="blogPost"
       (onValidForm)="onValidForm($event)"
       [isImageRequired]="isImageRequired"
     ></app-blog-form>

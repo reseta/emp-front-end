@@ -10,6 +10,9 @@ export const selectToken = createSelector(
   selectAuthState,
   (state) => state.token as string,
 );
+export const selectUser = createSelector(selectAuthState, (state) =>
+    state.token?.length ? JSON.parse(atob(state.token.split('.')[1])).user : null,
+);
 
 export const isAuthenticated = createSelector(
   selectAuthState,
