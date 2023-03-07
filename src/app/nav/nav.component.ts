@@ -15,6 +15,7 @@ export class NavComponent {
   constructor(private store: Store) {}
 
   onLogout() {
+    localStorage.removeItem('token');
     this.store.dispatch(removeTokenAction());
     this.store.dispatch(
         redirectAction({

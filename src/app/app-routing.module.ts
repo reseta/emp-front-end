@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowseComponent } from './browse/browse.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AllBlogPostsResolver } from './resolvers/all-blog-posts.resolver';
 import { BlogPostResolver } from './resolvers/blog-post.resolver';
 import { OwnBlogPostsResolver } from './resolvers/own-blog-posts.resolver';
 import { UserResolver } from './resolvers/user.resolver';
 import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'search',
+    pathMatch: 'full',
+  },
   {
     path: 'register',
     loadChildren: () =>
@@ -43,6 +49,14 @@ const routes: Routes = [
     component: BrowseComponent,
     resolve: {
       blogPosts: OwnBlogPostsResolver,
+      user: UserResolver,
+    },
+  },
+  {
+    path: 'search',
+    component: BrowseComponent,
+    resolve: {
+      blogPosts: AllBlogPostsResolver,
       user: UserResolver,
     },
   },

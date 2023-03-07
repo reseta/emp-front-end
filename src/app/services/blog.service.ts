@@ -25,7 +25,7 @@ export class BlogService {
   }
 
   findOne(id: number): Observable<BlogPost> {
-    return this.http.get<BlogPost[]>(`${environment.API_URL}/posts/${id}`).pipe(
+    return this.http.get<BlogPost[]>(`${environment.API_URL}/posts/all/${id}`).pipe(
         map((items) => {
           if (items.length) {
             return items[0];
@@ -34,6 +34,10 @@ export class BlogService {
           throw new Error('not found');
         }),
     );
+  }
+
+  findAll(): Observable<BlogPost[]> {
+    return this.http.get<BlogPost[]>(`${environment.API_URL}/posts/all`);
   }
 
   findAllOwn(): Observable<BlogPost[]> {

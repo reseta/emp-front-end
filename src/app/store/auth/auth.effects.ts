@@ -50,7 +50,7 @@ export class AuthEffects {
             from([
               AuthActions.saveTokenAction({ token: response.token }),
               CommonActions.redirectAction({
-                commands: ['/profile'],
+                commands: ['/browse'],
               }),
             ]),
           ),

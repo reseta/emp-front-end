@@ -13,26 +13,38 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul
-            class="navbar-nav mr-auto"
-            *ngIf="isAuthenticated$ | async; else nonAuthNav"
+      class="navbar-nav mr-auto"
+      *ngIf="isAuthenticated$ | async; else nonAuthNav"
     >
       <li
-              class="nav-item"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a class="nav-link" routerLink="/profile">Profile</a>
       </li>
       <li
-              class="nav-item"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" routerLink="/browse">All my posts</a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         <a class="nav-link" routerLink="/manage">New Post</a>
       </li>
-      <li
-              class="nav-item"
-      >
+      <li class="nav-item">
         <a class="nav-link" href="javascript:;" (click)="onLogout()">Logout</a>
       </li>
     </ul>
