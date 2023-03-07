@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of, switchMap } from 'rxjs';
+import { from, of, switchMap } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import * as UserActions from './user.actions';
+import * as ToastActions from '../toast/toast.actions';
 import * as CommonActions from '../common/common.actions';
+import { ToastType } from '../../toast/toast-type.enum';
 
 @Injectable()
 export class UserEffects {
@@ -13,11 +15,17 @@ export class UserEffects {
       switchMap((action) =>
         this.userService.update(action.user).pipe(
           switchMap(() =>
-            of(
+            from([
+              ToastActions.addMessage({
+                item: {
+                  type: ToastType.SUCCESS,
+                  message: 'Your profile was updated!',
+                },
+              }),
               CommonActions.redirectAction({
                 commands: ['/profile'],
               }),
-            ),
+            ]),
           ),
         ),
       ),

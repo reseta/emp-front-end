@@ -3,6 +3,7 @@
     <h5>Update profile</h5>
 
     <app-user-form
+      [user]="profile"
       [addName]="true"
       [addConfirmPassword]="true"
       (onValidForm)="onValidForm($event)"

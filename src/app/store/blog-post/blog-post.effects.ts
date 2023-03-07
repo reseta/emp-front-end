@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, from, of, switchMap } from 'rxjs';
-import { LoginResponse } from '../../login/login-response.model';
-import { UserService } from '../../services/user.service';
+import { of, switchMap } from 'rxjs';
 import * as BlogPostActions from './blog-post.actions';
 import * as CommonActions from '../common/common.actions';
-import { addMessage } from '../toast/toast.actions';
-import { ToastType } from 'src/app/toast/toast-type.enum';
-import { Store } from '@ngrx/store';
-import { HttpErrorResponse } from '@angular/common/http';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Injectable()
@@ -66,7 +60,6 @@ export class BlogPostEffects {
 
   constructor(
     private actions$: Actions,
-    private store: Store,
     private blogService: BlogService,
   ) {}
 }

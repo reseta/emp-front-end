@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { updateUserAction } from '../store/user/user.actions';
 import { User } from '../user-form/user.model';
@@ -9,7 +10,9 @@ import { User } from '../user-form/user.model';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  constructor(private store: Store) {}
+  profile = this.route.snapshot.data.profile;
+
+  constructor(private store: Store, private route: ActivatedRoute) {}
 
   onValidForm(user: User) {
     this.store.dispatch(updateUserAction({ user }));

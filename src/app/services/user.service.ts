@@ -15,6 +15,7 @@ export class UserService {
     update: 'user',
     login: 'signin',
     delete: 'user',
+    info: 'user',
   };
 
   constructor(private http: HttpClient) {}
@@ -25,6 +26,10 @@ export class UserService {
 
   update(user: User) {
     return this.http.put(`${environment.API_URL}/${this.path.update}`, user);
+  }
+
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${environment.API_URL}/${this.path.info}`);
   }
 
   login(credentials: Credentials): Observable<LoginResponse> {

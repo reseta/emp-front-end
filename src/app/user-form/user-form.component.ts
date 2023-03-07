@@ -9,6 +9,7 @@ import { User } from './user.model';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
+  @Input() user: User;
   @Input() addName: boolean;
   @Input() addConfirmPassword: boolean;
   @Output() onValidForm: EventEmitter<User> = new EventEmitter();
@@ -23,6 +24,10 @@ export class UserFormComponent implements OnInit {
         this.addName,
         this.addConfirmPassword,
     );
+
+    if (this.user) {
+      this.form.patchValue(this.user);
+    }
   }
 
   onSubmit() {
